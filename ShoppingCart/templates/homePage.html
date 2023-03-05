@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css %}
+{% endblock css %}
+
+{% block js %}
+{% endblock js %}
+
+{% block title %}
+<title>Home Page</title>
+{% endblock title %}
+
+
+
+{% block body %}
+
+
+<div class="container">
+    <div class="row">
+            {% for p in products %} 
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="{{p.img.url}}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">{{p.title}}</h5>
+                  <h5 class="card-title">{{p.desc}}</h5>
+                </div>
+                <div class="card-body">
+                    <a href="" class="card-link">₹{{p.price}}</a>
+                    <button class="btn btn-warning"><a href="{% url 'addToCart' p.id %}" class="card-link">Add to Cart</a></button>
+                </div>
+            </div>
+            {% endfor %}
+    </div>
+</div> 
+
+{% endblock body %}

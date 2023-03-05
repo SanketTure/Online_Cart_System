@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css %}
+{% endblock css %}
+
+{% block js %}
+{% endblock js %}
+
+{% block title %}
+<title>Login Page</title>
+{% endblock title %}
+
+
+
+{% block body %}
+
+<div class="container">
+    <div class="container bg-primary text-center"><h1 style="font-size: 37px;">LOGIN</h1></div>
+        <div class="container">
+            <div class="row">
+                <img src="" height="400px">
+                <div class="container my-3 w-50">
+                    <form action="{% url 'signIn' %}" method="post">
+                        {% csrf_token %}
+                        {{forms.as_p}}
+                        <div class="container my-3 text-center">
+                            <button class="btn btn-success" type="submit">Login</button>
+                            <a href="{% url 'signUp' %}" class="btn btn-danger">signUp</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+</div>
+
+{% endblock body %}

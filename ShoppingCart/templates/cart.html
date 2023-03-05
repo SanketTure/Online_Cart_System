@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+{% endblock css %}
+
+{% block js %}
+{% endblock js %}
+
+{% block title %}
+<title>Home Page</title>
+{% endblock title %}
+
+
+
+{% block body %}
+
+<section class="vh-100" style="background-color: #fdccbc;">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col">
+          <p style="text-align: center;"><span class="h2">Cart</span><span class="h4"></span></p>
+          {% for i in product %}
+          <div class="card mb-4">
+            <div class="card-body p-4">
+              <div class="row align-items-center">
+                <div class="col-md-2">
+                  <img src="{{i.img.url}}"
+                    class="img-fluid" alt="Generic placeholder image">
+                </div>
+                <div class="col-md-2 d-flex justify-content-center">
+                  <div>
+                    <p class="small text-muted mb-4 pb-2">Name</p>
+                    <p class="lead fw-normal mb-0">{{i.title}}</p>
+                  </div>
+                </div>
+                <div class="col-md-2 d-flex justify-content-center">
+                  <div>
+                    <p class="small text-muted mb-4 pb-2">Price</p>
+                    <p class="lead fw-normal mb-0">₹{{i.price}}</p>
+                  </div>
+                </div>
+                <div class="col-md-2 d-flex justify-content-center">
+                  <div>
+                    <p class="small text-muted mb-4 pb-2">Remove</p>
+                    <button class="btn btn-danger">
+                      <a href="{% url 'delete' i.id %}">Remove</a>
+                    </button>
+                  </div>
+                </div> 
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+          <div class="card mb-5">
+            <div class="card-body p-4">
+  
+              <div class="float-end">
+                <p class="mb-0 me-5 d-flex align-items-center">
+                  <span class="small text-muted me-2">Total : </span> <span
+                    class="lead fw-normal" style="font-weight: bold;">₹{{total}}</span>
+                </p>
+              </div>
+  
+            </div>
+          </div>
+  
+          <div class="d-flex justify-content-end">
+            <button type="button" class="btn btn-light btn-lg me-2"><a href="{% url 'home' %}">Continue shopping</a></button>
+            <button type="button" class="btn btn-primary btn-lg"><a href="{% url 'checkOut' %}">Check Out</button></a> 
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock body %}

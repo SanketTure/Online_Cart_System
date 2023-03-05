@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block css %}
+{% endblock css %}
+
+{% block js %}
+{% endblock js %}
+
+{% block title %}
+<title>Home Page</title>
+{% endblock title %}
+
+
+
+{% block body %}
+
+<div class="container">
+    <div class="container bg-primary text-center"><h1>Enter Your Details</h1></div>
+    <div class="container my-3 w-50">
+        <form action="{% url 'checkOut' %}" method="post">
+            {% csrf_token %}
+            {{forms.as_p}}
+            <div class="container my-3 text-center">
+                <button class="btn btn-success" type="submit">Pay</button>
+                <a href="{% url 'home' %}" class="btn btn-danger">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock body %}
