@@ -42,13 +42,18 @@
 
 
 </head>
-<body>
+<body style="background: gainsboro;">
 
     {% include "navBar.html" %}
 
     {% if messages %}
         {% for message in messages %}
-            <p class="alert alert-{{message.tags}}">{{message}}</p>
+            <div class="alert alert-{{message.tags}}" role="alert">
+                {{message}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
         {% endfor %}
     {% endif %}
 

@@ -1,0 +1,39 @@
+
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css %}
+{% endblock css %}
+
+{% block js %}
+{% endblock js %}
+
+{% block title %}
+<title>Update Page</title>
+{% endblock title %}
+
+
+
+{% block body %}
+
+<div class="container">
+    <div class="container text-center" ><h1 style="font-size: 35px;">Update Details</h1></div>
+    <div class="container my-3 w-50">
+        <form action="{% url 'update' product.id %}" method="post">
+            {% csrf_token %}
+            Title<input type="text" name="title" value="{{product.title}}" class="form-control">
+            Description<input type="text" name="desc" value="{{product.desc}}" class="form-control">
+            Price<input type="text" name="price" value="{{product.price}}" class="form-control">
+            <button class="btn btn-success" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+{% endblock body %}
+
+
+
+

@@ -18,18 +18,30 @@
 
 
 <div class="container">
-    <div class="row">
+  <div class="container text-center" ><h1 style="font-size: 35px;">All Products</h1></div>
+    <div class="row" style="margin-left: 45px;">
             {% for p in products %} 
             <div class="card" style="width: 18rem;">
                 <img class="card-img-top" src="{{p.img.url}}" alt="Card image cap">
                 <div class="card-body">
                   <h5 class="card-title">{{p.title}}</h5>
-                  <h5 class="card-title">{{p.desc}}</h5>
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Description
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="#" style="white-space: normal;">{{p.desc}}</a>
+                    </div>
+                  <!-- <h5 class="card-title">{{p.desc}}</h5> -->
                 </div>
                 <div class="card-body">
-                    <a href="" class="card-link">₹{{p.price}}</a>
-                    <button class="btn btn-warning"><a href="{% url 'addToCart' p.id %}" class="card-link">Add to Cart</a></button>
-                </div>
+                    <a href="" class="card-link" style="color: black;">₹{{p.price}}</a>
+                    {% if user.is_superuser %}
+                      <button class="btn btn-warning"><a href="{% url 'update' p.id %}" class="card-link" style="color: black;">Update</a></button>
+                      <button class="btn btn-danger"><a href="{% url 'delete' p.id %}" class="card-link" style="color: black;">Delete</a></button>
+                    {% else %}
+                      <button class="btn btn-warning"><a href="{% url 'addToCart' p.id %}" class="card-link" style="color: black;">Add to Cart</a></button>
+                    {% endif %}
+                  </div>
             </div>
             {% endfor %}
     </div>

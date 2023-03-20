@@ -16,17 +16,13 @@
 
 <section class="vh-100">
     <div class="container h-100">
-      <div class="container text-center"><h1 style="font-size: 37px;">Order History</h1></div>
+      <div class="container text-center"><h1 style="font-size: 37px;">Customers</h1></div>
       <div class="row d-flex justify-content-center align-items-center h-100" style="height: 70%!important;">
         <div class="col">
           {% for i in data %}
           <div class="card mb-4">
             <div class="card-body p-4">
               <div class="row align-items-center">
-                <div class="col-md-2">
-                  <img src="{{i.img.url}}"
-                    class="img-fluid" alt="Generic placeholder image">
-                </div>
                 <div class="col-md-2 d-flex justify-content-center">
                   <div>
                     <p class="small text-muted mb-4 pb-2">Name</p>
@@ -35,9 +31,15 @@
                 </div>
                 <div class="col-md-2 d-flex justify-content-center">
                   <div>
-                    <p class="small text-muted mb-4 pb-2">Purchase Date and Time</p>
-                    <p class="lead fw-normal mb-0">{{i.dateAndTime}}</p>
+                    <p class="small text-muted mb-4 pb-2">Phone Number</p>
+                    <p class="lead fw-normal mb-0">{{i.phoneNo}}</p>
                   </div>
+                </div>
+                <div class="col-md-2 d-flex justify-content-center">
+                    <div>
+                      <p class="small text-muted mb-4 pb-2">Address</p>
+                      <p class="lead fw-normal mb-0">{{i.address}}</p>
+                    </div>
                 </div> 
               </div>
             </div>
