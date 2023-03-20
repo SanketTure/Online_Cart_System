@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
-from .forms import Register,LoginForm,AddProduct,CheckOutForm
+from .forms import Register,LoginForm,AddProduct,CheckOutForm,UpdateProduct
 from django.contrib.auth import login,logout,authenticate
-from .models import ProductModel,CartModel,OrderHistoryModel
+from .models import ProductModel,CartModel,OrderHistoryModel,CustomerModel
 from datetime import datetime
 from django.contrib import messages
 
@@ -19,9 +19,7 @@ class ShoppingCart:
         if request.method=='POST':
             usern = request.POST['username']
             passwd = request.POST['password']
-            
             user = authenticate(username=usern,password=passwd)
-            print(user)
             if user is not None:
                 login(request,user)
                 messages.success(request,f"Successfully {user} logged In")
@@ -94,7 +92,7 @@ class ShoppingCart:
             
         return render(request,'cart.html',data)
     
-    def delete(self,request,id):
+    def remove(self,request,id):
         data = CartModel.objects.get(id=id)
         data.delete()
         messages.success(request,"Registered Successfully")
@@ -134,6 +132,41 @@ class ShoppingCart:
     def history(self,request):
         data = OrderHistoryModel.objects.all()
         return render(request,'history.html',{'data':data})
+    
+    def update(self,request,id):
+        product = ProductModel.objects.get(id=id)
+        if request.method == "POST":
+            title = request.POST['title']
+            desc = request.POST['desc']
+            price = request.POST['price']
+            data = ProductModel(
+                id=id,
+                title=title,
+                desc=desc,
+                price=price,
+            )   
+            data.save()
+            products = ProductModel.objects.all()
+            context = {
+                'products':products
+            }
+            return render(request ,'homePage.html',context)   
+        
+        return render(request,'update.html',{'product':product})
+    
+    def delete(self,request,id):
+        product = ProductModel.objects.get(id=id)
+        product.delete()
+        products = ProductModel.objects.all()
+        context = {
+            'products':products
+        }
+        return render(request ,'homePage.html',context)
+    
+    def customers(self,request):
+        data = CustomerModel.objects.all()
+        return render(request,'customer.html',{'data':data})
+        
         
         
 

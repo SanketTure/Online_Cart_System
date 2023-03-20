@@ -55,3 +55,20 @@ class CheckOutForm(forms.ModelForm):
             'phoneNo':forms.NumberInput(attrs={'class':'form-control'}),
             'address':forms.TextInput(attrs={'class':'form-control'}),
         }
+        
+class UpdateProduct(forms.ModelForm):
+    class Meta:
+        model = ProductModel
+        fields = ['title','desc','price','img']
+        labels ={
+            'title':'Enter Title',
+            'desc':'Enter Description',
+            'price':'Enter Price',
+            'img':'Select Image',
+        }
+        widgets={
+            'title':forms.TextInput(attrs={'class':'form-control'}),
+            'desc':forms.TextInput(attrs={'class':'form-control'}),
+            'price':forms.NumberInput(attrs={'class':'form-control'}),
+            'img':forms.FileInput(attrs={'class':'form-control'}),
+        }
